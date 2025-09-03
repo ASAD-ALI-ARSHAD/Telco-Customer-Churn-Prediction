@@ -1,2 +1,90 @@
-# Telco-Customer-Churn-Prediction
-End-to-end ML pipeline for predicting customer churn in the telecom industry using Python and Scikit-learn. Includes data preprocessing, Logistic Regression and Random Forest models, hyperparameter tuning with GridSearchCV, and model evaluation.
+# 📊 Telco Customer Churn Prediction
+
+## 📌 Project Overview
+Customer churn is a major challenge for telecommunications companies as retaining existing customers is often more cost-effective than acquiring new ones.  
+This project aims to **predict customer churn** by building and evaluating machine learning models, enabling businesses to proactively identify at-risk customers and implement targeted retention strategies.
+
+---
+
+## 🏷 Problem Definition
+The objective is to develop a **predictive model** that classifies customers as either **churners** or **non-churners**, allowing the business to focus retention efforts on customers most likely to leave.
+
+---
+
+## 🛠 Data Preprocessing
+- **Dataset:** Telco Customer Churn Dataset  
+- **Cleaning Steps:**
+  - Converted blank `'TotalCharges'` values to NaN and dropped affected rows.
+  - Separated features (`X`) and target (`y`).
+  - Identified categorical and numerical features.
+- **Preprocessing Pipeline:**
+  - Used `ColumnTransformer` to apply:
+    - `StandardScaler` → Numerical features
+    - `OneHotEncoder` → Categorical features
+  - Excluded `'customerID'` column.
+  - Ensured consistent preprocessing for training and future predictions.
+
+---
+
+## 🤖 Model Development
+Two models were selected:
+- **Logistic Regression**
+- **Random Forest Classifier**
+
+Each model was wrapped in a pipeline that included preprocessing + classifier.  
+The issue with `'customerID'` was resolved by dropping it explicitly from `X`.
+
+---
+
+## 🎯 Hyperparameter Tuning
+Used **GridSearchCV** with 5-fold cross-validation and `accuracy` scoring:
+- **Logistic Regression Best Params:** `{'classifier__C': 100}`
+- **Random Forest Best Params:** `{'classifier__max_depth': 10, 'classifier__n_estimators': 200}`
+
+---
+
+## 📈 Model Evaluation
+Evaluated the best models on training data using Accuracy, Precision, Recall, and F1-Score:
+
+| Model               | Accuracy | Precision | Recall | F1-Score |
+|--------------------|---------|-----------|--------|---------|
+| Logistic Regression | 0.8062 | 0.6611    | 0.5554 | 0.6037 |
+| Random Forest       | **0.8645** | **0.7951** | **0.6602** | **0.7214** |
+
+✅ **Random Forest outperformed Logistic Regression across all metrics**.
+
+---
+
+## 🔍 Key Insights
+- **Random Forest** provides:
+  - Higher accuracy → Better overall predictions
+  - Higher precision → More reliable churn predictions
+  - Higher recall → Better identification of actual churners
+  - Higher F1-Score → Best balance between precision & recall
+- **Reason for better performance:** Random Forest captures **non-linear relationships** and **feature interactions** better than Logistic Regression.
+
+---
+
+## 🏆 Preferred Model
+The **Random Forest Classifier** was chosen as the final model due to its superior performance and better balance between precision and recall.
+
+---
+
+## 🚀 Next Steps
+- **Evaluate on a test set:** Ensure generalization on unseen data.
+- **Use cross-validation for final evaluation** for robust performance metrics.
+- **Explore other models:** XGBoost, LightGBM, SVM, or Neural Networks.
+- **Feature engineering:** Derive new features (e.g., tenure categories, bundled services).
+- **Handle class imbalance:** Apply SMOTE, undersampling, or class weights.
+- **Advanced hyperparameter tuning:** Use RandomizedSearchCV or Bayesian optimization.
+- **Interpretability:** Use SHAP/LIME to explain predictions and understand key churn drivers.
+- **Threshold tuning:** Adjust classification threshold to meet business objectives.
+- **Deployment:** Integrate the model pipeline into production for real-time or batch predictions.
+
+---
+
+## 💾 Model Export
+The **best-performing Random Forest pipeline** was exported using `joblib` for deployment.
+
+---
+
