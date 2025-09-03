@@ -70,19 +70,6 @@ The **Random Forest Classifier** was chosen as the final model due to its superi
 
 ---
 
-## 🚀 Next Steps
-- **Evaluate on a test set:** Ensure generalization on unseen data.
-- **Use cross-validation for final evaluation** for robust performance metrics.
-- **Explore other models:** XGBoost, LightGBM, SVM, or Neural Networks.
-- **Feature engineering:** Derive new features (e.g., tenure categories, bundled services).
-- **Handle class imbalance:** Apply SMOTE, undersampling, or class weights.
-- **Advanced hyperparameter tuning:** Use RandomizedSearchCV or Bayesian optimization.
-- **Interpretability:** Use SHAP/LIME to explain predictions and understand key churn drivers.
-- **Threshold tuning:** Adjust classification threshold to meet business objectives.
-- **Deployment:** Integrate the model pipeline into production for real-time or batch predictions.
-
----
-
 ## 💾 Model Export
 The **best-performing Random Forest pipeline** was exported using `joblib` for deployment.
 
